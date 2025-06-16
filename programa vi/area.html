@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo de Áreas</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Cálculo de Áreas</h1>
+    <p>Escolha a forma geométrica e insira as medidas para calcular a área:</p>
+
+    <label for="forma">Forma:</label><br>
+    <select id="forma" onchange="mostrarCampos()">
+        <option value="retangulo">Retângulo</option>
+        <option value="triangulo">Triângulo</option>
+        <option value="circulo">Círculo</option>
+    </select><br><br>
+
+    <div id="campos"></div>
+
+    <button class="botao" onclick="calcularArea()">Calcular Área</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+    <script>
+        function mostrarCampos() {
+            const forma = document.getElementById("forma").value;
+            let html = "";
+
+            if (forma === "retangulo" || forma === "triangulo") {
+                html += '<label for="base">Base (m):</label><br>';
+                html += '<input type="number" id="base"><br><br>';
+                html += '<label for="altura">Altura (m):</label><br>';
+                html += '<input type="number" id="altura"><br><br>';
+            } else if (forma === "circulo") {
+                html += '<label for="raio">Raio (m):</label><br>';
+                html += '<input type="number" id="raio"><br><br>';
+            }
+
+            document.getElementById("campos").innerHTML = html;
+        }
+
+        function calcularArea() {
+            const forma = document.getElementById("forma").value;
+            let area = 0;
+
+            if (forma === "retangulo") {
+                const b = parseFloat(document.getElementById("base").value);
+                const h = parseFloat(document.getElementById("altura").value);
+                area = b * h;
+            } else if (forma === "triangulo") {
+                const b = parseFloat(document.getElementById("base").value);
+                const h = parseFloat(document.getElementById("altura").value);
+                area = (b * h) / 2;
+            } else if (forma === "circulo") {
+                const r = parseFloat(document.getElementById("raio").value);
+                area = Math.PI * r * r;
+            }
+
+            if (isNaN(area) || area <= 0) {
+                document.getElementById("resultado").innerText = "Preencha os campos corretamente.";
+            } else {
+                document.getElementById("resultado").innerText = `Área: ${area.toFixed(2)} m²`;
+            }
+        }
+
+        // Mostrar campos padrão ao carregar
+        window.onload = mostrarCampos;
+    </script>
+</body>
+</html>

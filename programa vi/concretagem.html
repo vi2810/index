@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Curso de Programação para Engenharia Civil</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<p>Insira a matrícula</p>
+ <input type="text" id="nome" placeholder="Digite sua matrícula"><br><br>
+  <button class="botao" onclick="verificarCampo()">enviar</button>
+
+  <div id="mensagem" class="mensagem"></div>
+  <div id="bloco-container"></div>
+  <div id="bloco-container"></div>
+<br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='instrucional.html'">Voltar</button>
+    </footer>
+  <script>
+    function verificarCampo() {
+      const campo = document.getElementById("nome");
+      const valor = campo.value.trim(); // remove espaços em branco
+      const container = document.getElementById("bloco-container");
+      const mensagem = document.getElementById("mensagem");
+
+      // Limpa o conteúdo anterior
+      container.innerHTML = "";
+      mensagem.textContent = "";
+
+      if (valor !== "") {
+        container.innerHTML = `
+          <div style="margin-top: 30px;">
+            <h2>concreto celular</h2>
+            <a href="https://www.youtube.com/watch?v=gmbc3aOHod0&list=PLdWLKcO0SzKm7tu_DttOGPsePEv1RhhNc" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+            <p style="margin-top: 15px; font-size: 1em; color: #333;">
+              📍 Rua dos Engenheiros, 123 – Laboratório 4 – Londrina/PR
+            </p>
+          </div>
+          <div style="margin-top: 30px;">
+            <h2>inspeção</h2>
+            <a href="https://www.youtube.com/watch?v=Z87RamLDN8w&list=PLcytaWNNrQHqrLZgm_TUk1G4kBYV8U9MO" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+            <p style="margin-top: 15px; font-size: 1em; color: #333;">
+              📍 Rua dos Engenheiros, 123 – Laboratório 4 – Londrina/PR
+            </p>
+          </div>
+          <div style="margin-top: 30px;">
+            <h2>concreto armado</h2>
+            <a href="https://www.youtube.com/watch?v=zG-47lkxZuY&list=PLoorgaH2uvfxyAqnSV7gRq99MW6aBLcta" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+            <p style="margin-top: 15px; font-size: 1em; color: #333;">
+              📍 Rua dos Engenheiros, 123 – Laboratório 4 – Londrina/PR
+            </p>
+          </div>
+        `;
+      } else {
+        mensagem.textContent = "insira sua matrícula";
+      }
+    }
+  </script>
+<script>
+    function enviar() {}
+</script>
+</body>
+</html>
+

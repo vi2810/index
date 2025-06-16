@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Volume de Concreto</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <h1>Calculadora de Volume de Concreto</h1>
+    <p>Preencha as medidas em metros:</p>
+
+    <label for="comprimento">Comprimento (m):</label><br>
+    <input type="number" id="comprimento" placeholder="Ex: 3.5"><br><br>
+
+    <label for="largura">Largura (m):</label><br>
+    <input type="number" id="largura" placeholder="Ex: 2.0"><br><br>
+
+    <label for="altura">Altura (m):</label><br>
+    <input type="number" id="altura" placeholder="Ex: 0.15"><br><br>
+
+    <button class="botao" onclick="calcularVolume()">Calcular Volume</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+
+    <label for="tipoConcreto">Tipo de concreto:</label><br>
+    <select id="tipoConcreto">
+        <option value="2400">Concreto Simples (2400 kg/m³)</option>
+        <option value="2500">Concreto Armado (2500 kg/m³)</option>
+        <option value="2000">Concreto com Argila Expandida (2000 kg/m³)</option>
+    </select><br><br>
+
+    <button class="botao" onclick="calcularMassa()">Calcular Massa</button>
+    <h2 id="resultadoMassa"></h2>
+
+    <!-- Botão Voltar -->
+    <br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+    <!-- Importando o JavaScript externo -->
+    <script src="script.js"></script>
+
+</body>
+</html>

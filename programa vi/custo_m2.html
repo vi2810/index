@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Estimativa de Custo por m²</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Estimativa de Custo por m²</h1>
+    <p>Informe a área construída e o custo médio estimado por metro quadrado:</p>
+
+    <label for="area">Área construída (m²):</label><br>
+    <input type="number" id="area" placeholder="Ex: 100"><br><br>
+
+    <label for="custo">Custo médio por m² (R$):</label><br>
+    <input type="number" id="custo" placeholder="Ex: 1500"><br><br>
+
+    <button class="botao" onclick="calcularCusto()">Calcular Custo Total</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+    <script>
+        function calcularCusto() {
+            const area = parseFloat(document.getElementById("area").value);
+            const custoM2 = parseFloat(document.getElementById("custo").value);
+
+            if (isNaN(area) || area <= 0 || isNaN(custoM2) || custoM2 <= 0) {
+                document.getElementById("resultado").innerText = "Preencha os valores corretamente.";
+                return;
+            }
+
+            const total = area * custoM2;
+            document.getElementById("resultado").innerText = `Custo estimado: R$ ${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

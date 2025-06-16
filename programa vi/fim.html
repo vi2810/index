@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Curso de Programação para Engenharia Civil</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<p>Insira a matrícula</p>
+ <input type="text" id="nome" placeholder="Digite sua matrícula"><br><br>
+  <button class="botao" onclick="verificarCampo()">enviar</button>
+
+  <div id="mensagem" class="mensagem"></div>
+  <div id="bloco-container"></div>
+  <div id="bloco-container"></div>
+<br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='instrucional.html'">Voltar</button>
+    </footer>
+  <script>
+    function verificarCampo() {
+      const campo = document.getElementById("nome");
+      const valor = campo.value.trim(); // remove espaços em branco
+      const container = document.getElementById("bloco-container");
+      const mensagem = document.getElementById("mensagem");
+
+      container.innerHTML = "";
+      mensagem.textContent = "";
+
+      if (valor !== "") {
+        container.innerHTML = `
+          <div style="margin-top: 30px;">
+            <h2>limpeza e fim de obra</h2>
+            <a href="https://www.youtube.com/watch?v=okIYe2Vue5E" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+          </div>
+          <div style="margin-top: 30px;">
+            <h2>limpeza em porcelanato</h2>
+            <a href="https://www.youtube.com/watch?v=W7yzbv15sxQ" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+          </div>
+        `;
+      } else {
+        mensagem.textContent = "insira sua matrícula";
+      }
+    }
+  </script>
+<script>
+    function enviar() {
+      document.getElementById("nome").addEventListener("click", function () {
+            const assistir = {
+                nome: document.getElementById("nome").value.trim(),
+         const colaboradores = JSON.parse(localStorage.getItem("assistir")) || [];
+            assistir.push(assistir);
+            localStorage.setItem("assistir", JSON.stringify(assistir));
+
+}
+</script>
+</body>
+</html>
+

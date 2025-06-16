@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Materiais para Alvenaria</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Materiais para Alvenaria</h1>
+    <p>Informe a área da parede (em m²) para calcular a quantidade estimada de tijolos:</p>
+
+    <label for="area">Área da parede (m²):</label><br>
+    <input type="number" id="area" placeholder="Ex: 12.5"><br><br>
+
+    <label for="tipo">Tipo de tijolo:</label><br>
+    <select id="tipo">
+        <option value="0.027">Cerâmico comum (9x19x29 cm)</option>
+        <option value="0.019">Tijolo baiano (14x19x39 cm)</option>
+        <option value="0.014">Bloco de concreto (14x19x39 cm)</option>
+    </select><br><br>
+
+    <button class="botao" onclick="calcularTijolos()">Calcular</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+    <script>
+        function calcularTijolos() {
+            const area = parseFloat(document.getElementById("area").value);
+            const volumeTijolo = parseFloat(document.getElementById("tipo").value);
+            const areaTijolo = volumeTijolo / 0.14; // altura média de 14 cm por tijolo
+
+            if (isNaN(area) || area <= 0) {
+                document.getElementById("resultado").innerText = "Informe uma área válida.";
+                return;
+            }
+
+            let qtd = area / areaTijolo;
+            qtd *= 1.1; // Acrescentar 10% de perdas
+
+            document.getElementById("resultado").innerText = `Quantidade estimada: ${Math.ceil(qtd)} tijolos`;
+        }
+    </script>
+</body>
+</html>

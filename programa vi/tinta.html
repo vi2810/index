@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>consumo de tinta</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>estimativa de consumo de tinta</h1>
+    <p>Informe as dimensões da sala</p>
+
+    <label for="largura">largura (m):</label><br>
+    <input type="number" id="largura" placeholder="Ex: 10m"><br>
+    <label for="altura"> altura (m):</label><br>
+    <input type="number" id="altura" placeholder="Ex: 10m"><br>
+    <label for="demaos">numero de demãos:</label><br>
+    <input type="number" id="demaos" placeholder="Ex: 12"><br>
+    <label for="rendimento">rendimento:</label><br>
+    <input type="number" id="rendimento" placeholder="Ex: 3"><br><br>
+
+       
+    </select><br><br>
+<form>
+    <input type="checkbox" id="teto" name="teto" value="value1">
+    <label for="option1">incluir teto?</label><br>
+
+
+    <button type="submit">Enviar</button>
+</form>
+<br><br>
+    <button class="botao" onclick="calculartinta()">Calcular</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+<h2 id="resultado"></h2>
+<br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+ <script>
+        function mostrarcampos() {
+
+                html += '<label for="largurateto">largura (m):</label><br>';
+                html += '<label for="comprimentoteto">largura (m):</label><br>';
+
+            document.getElementById("campos").innerHTML = html;
+}
+        function calculartinta() {
+
+            if (isNaN() ||  <= 0 || isNaN() ||  <= 0 || isNaN() ||  <= 0 || isNaN() ||  <= 0 ) {
+                document.getElementById("resultado").innerText = "preencha os campos corretamente.";
+                return;
+
+const a = parseFloat(document.getElementById("comprimento").value);
+const b = parseFloat(document.getElementById("largura").value);
+const c = parseFloat(document.getElementById("pessoas").value);
+const d = parseFloat(document.getElementById("equipamentos").value);
+const x = parseFloat(document.getElementById("tipo").value);
+
+ const total = (((a * b * 600) + (c * 600) + (d * 600)) * x);
+
+}
+            document.getElementById("resultado").innerText = `a capacidade de ar condicionados é : ${Math.ceil(total)} `;
+        }
+    </script>
+</body>
+</html>

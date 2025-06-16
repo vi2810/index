@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Consumo de Argamassa</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Consumo de Argamassa</h1>
+    <p>Informe a área total (em m²) e o tipo de aplicação:</p>
+
+    <label for="area">Área (m²):</label><br>
+    <input type="number" id="area" placeholder="Ex: 25"><br><br>
+
+    <label for="tipo">Tipo de aplicação:</label><br>
+    <select id="tipo">
+        <option value="17">Assentamento (17 kg/m²)</option>
+        <option value="25">Revestimento (25 kg/m²)</option>
+    </select><br><br>
+
+    <button class="botao" onclick="calcularArgamassa()">Calcular Consumo</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+    <script>
+        function calcularArgamassa() {
+            const area = parseFloat(document.getElementById("area").value);
+            const consumo = parseFloat(document.getElementById("tipo").value);
+
+            if (isNaN(area) || area <= 0) {
+                document.getElementById("resultado").innerText = "Informe uma área válida.";
+                return;
+            }
+
+            const totalKg = area * consumo;
+            const sacos = totalKg / 20; // 1 saco de argamassa com 20 kg
+
+            document.getElementById("resultado").innerText =
+                `Consumo estimado: ${totalKg.toFixed(1)} kg (${Math.ceil(sacos)} sacos de 20 kg)`;
+        }
+    </script>
+</body>
+</html>

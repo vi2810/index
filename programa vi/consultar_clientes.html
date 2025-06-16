@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Clientes</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Clientes Cadastrados</h1>
+    <table border="1" style="margin: auto;">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>CEP</th>
+                <th>CPF</th>
+                <th>CNPJ</th>
+                <th>Email</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaClientes"></tbody>
+    </table>
+<div style="text-align:center; margin: 20px;">
+    <button class="botao2" onclick="exportarParaCSV()">📁 Exportar para Excel</button>
+    <button class="botao2" onclick="exportarParaWord()">📝 Exportar para Word</button>
+</div>
+    <br><br>
+    <footer>
+        <button class="botao" onclick="history.back()">Voltar</button>
+    </footer>
+
+<script>
+function exportarParaCSV() {
+    const tabela = document.querySelector("tbody");
+    const rows = Array.from(tabela.rows);
+    if (rows.length === 0) {
+        alert("Nenhum dado para exportar.");
+        return;
+    }
+    const headers = Array.from(rows[0].cells).map(cell => cell.cellIndex !== undefined ? cell.innerText : "");
+    const csv = [headers.join(",")];
+    rows.forEach(row => {
+        const cols = Array.from(row.cells).map(cell => cell.innerText);
+        csv.push(cols.join(","));
+    });
+    const blob = new Blob([csv.join("\n")], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "dados_exportados.csv");
+    link.click();
+}
+
+function exportarParaWord() {
+    const tabela = document.querySelector("table");
+    if (!tabela) {
+        alert("Tabela não encontrada.");
+        return;
+    }
+    const html = "<html><head><meta charset='utf-8'><title>Exportação</title></head><body>" +
+                 "<h1>Exportação de Dados</h1>" +
+                 tabela.outerHTML +
+                 "</body></html>";
+    const blob = new Blob(['\ufeff' + html], {
+        type: 'application/msword'
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "dados_exportados.doc";
+    link.click();
+}
+</script>
+    <script>
+        const tabela = document.getElementById("tabelaClientes");
+        const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+
+        if (clientes.length === 0) {
+            tabela.innerHTML = "<tr><td colspan='7'>Nenhum cliente cadastrado.</td></tr>";
+        } else {
+            clientes.forEach(c => {
+                tabela.innerHTML += `
+                    <tr>
+                        <td>${c.nome}</td>
+                        <td>${c.endereco || ""}</td>
+                        <td>${c.cep || ""}</td>
+                        <td>${c.cpf || ""}</td>
+                        <td>${c.cnpj || ""}</td>
+                        <td>${c.email}</td>
+                        <td>${c.telefone}</td>
+                    </tr>`;
+            });
+        }
+    </script>
+</body>
+</html>

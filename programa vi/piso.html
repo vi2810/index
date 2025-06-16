@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Curso de Programação para Engenharia Civil</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<p>Insira a matrícula</p>
+ <input type="text" id="nome" placeholder="Digite sua matrícula"><br><br>
+  <button class="botao" onclick="verificarCampo()">enviar</button>
+
+  <div id="mensagem" class="mensagem"></div>
+  <div id="bloco-container"></div>
+  <div id="bloco-container"></div>
+<br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='instrucional.html'">Voltar</button>
+    </footer>
+  <script>
+    function verificarCampo() {
+      const campo = document.getElementById("nome");
+      const valor = campo.value.trim(); // remove espaços em branco
+      const container = document.getElementById("bloco-container");
+      const mensagem = document.getElementById("mensagem");
+
+      container.innerHTML = "";
+      mensagem.textContent = "";
+
+      if (valor !== "") {
+        container.innerHTML = `
+          <div style="margin-top: 30px;">
+            <h2>porcelanato</h2>
+            <a href="https://www.youtube.com/watch?v=paJcGQpJ1Pw" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+          </div>
+          <div style="margin-top: 30px;">
+            <h2>vinilico</h2>
+            <a href="https://www.youtube.com/watch?v=KYA5r5ySDL8&list=PLr4goZ8C2TjXEF1-BS8i82XIRyVJmafPW" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+
+          </div>
+          <div style="margin-top: 30px;">
+            <h2>laminado</h2>
+            <a href="https://www.youtube.com/watch?v=hBhqYrzZ0nk" target="_blank">
+              <button class="botao">Assistir ao vídeo</button>
+            </a>
+
+          </div>
+        `;
+      } else {
+        mensagem.textContent = "insira sua matrícula";
+      }
+    }
+  </script>
+<script>
+    function enviar() {}
+</script>
+</body>
+</html>
+

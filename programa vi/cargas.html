@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Distribuição de Cargas</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Distribuição de Cargas em Vigas</h1>
+    <p>Calcule o momento fletor máximo em uma viga com carga uniformemente distribuída.</p>
+
+    <label for="carga">Carga distribuída (kN/m):</label><br>
+    <input type="number" id="carga" placeholder="Ex: 12"><br><br>
+
+    <label for="comprimento">Comprimento da viga (m):</label><br>
+    <input type="number" id="comprimento" placeholder="Ex: 6"><br><br>
+
+    <button class="botao" onclick="calcularMomento()">Calcular Momento Fletor</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+    <script>
+        function calcularMomento() {
+            const q = parseFloat(document.getElementById("carga").value);
+            const L = parseFloat(document.getElementById("comprimento").value);
+
+            if (isNaN(q) || q <= 0 || isNaN(L) || L <= 0) {
+                document.getElementById("resultado").innerText = "Preencha os valores corretamente.";
+                return;
+            }
+
+            const M = (q * Math.pow(L, 2)) / 8;
+            document.getElementById("resultado").innerText =
+                `Momento fletor máximo: ${M.toFixed(2)} kN·m`;
+        }
+    </script>
+</body>
+</html>

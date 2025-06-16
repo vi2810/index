@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>dimensionamento de ar condicionado</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Dimensionamento para ar condicionado</h1>
+    <p>Informe as dimensões da sala</p>
+
+    <label for="largura">largura (m):</label><br>
+    <input type="number" id="largura" placeholder="Ex: 10m"><br>
+    <label for="comprimento">comprimento (m):</label><br>
+    <input type="number" id="comprimento" placeholder="Ex: 10m"><br>
+    <label for="pessoas">numero de pessoas:</label><br>
+    <input type="number" id="pessoas" placeholder="Ex: 12"><br>
+    <label for="equipamentos">equipamentos:</label><br>
+    <input type="number" id="equipamentos" placeholder="Ex: 3"><br><br>
+
+ <p>Informe o nível de insolação</p>
+ 
+    <label for="tipo">insolação:</label><br>
+    <select id="tipo">
+    <option value="1">insolação baixa</option>
+        <option value="1.15">insolação média</option>
+        <option value="1.30">insolação alta</option>
+       
+    </select><br><br>
+
+    <button class="botao" onclick="calculararcondicionado()">Calcular</button>
+    <h2 id="resultado"></h2>
+
+    <br><br>
+<h2 id="resultado"></h2>
+<br><br>
+    <footer>
+        <button class="botao" onclick="window.location.href='canteiro.html'">Voltar</button>
+    </footer>
+
+ <script>
+        function calculararcondicionado() {
+const a = parseFloat(document.getElementById("comprimento").value);
+const b = parseFloat(document.getElementById("largura").value);
+const c = parseFloat(document.getElementById("pessoas").value);
+const d = parseFloat(document.getElementById("equipamentos").value);
+const x = parseFloat(document.getElementById("tipo").value);
+
+ const total = (((a * b * 600) + (c * 600) + (d * 600)) * x);
+
+
+            if (isNaN(a) || a <= 0 || isNaN(b) || b <= 0 || isNaN(c) || c <= 0 || isNaN(d) || d <= 0 ) {
+                document.getElementById("resultado").innerText = "preencha os campos corretamente.";
+ }else {
+                document.getElementById("resultado").innerText = `a capacidade de ar condicionados é : ${Math.ceil(total)} `;
+            }
+}
+    </script>
+</body>
+</html>
+
+

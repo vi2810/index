@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Fornecedores</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="index">
+    <h1>Cadastro de Fornecedores</h1>
+
+    <label for="empresa">Nome da Empresa:</label><br>
+    <input type="text" id="empresa"><br><br>
+
+    <label for="razao">Razão Social:</label><br>
+    <input type="text" id="razao"><br><br>
+
+    <label for="cnpj">CNPJ:</label><br>
+    <input type="text" id="cnpj" maxlength="18" placeholder="00.000.000/0000-00"><br><br>
+
+    <label for="contato">Nome do Contato:</label><br>
+    <input type="text" id="contato"><br><br>
+
+    <label for="telefone">Telefone:</label><br>
+    <input type="tel" id="telefone" placeholder="(99) 99999-9999"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email"><br><br>
+
+    <label for="endereco">Endereço:</label><br>
+    <input type="text" id="endereco"><br><br>
+
+    <label for="numero">Número:</label><br>
+    <input type="text" id="numero"><br><br>
+
+    <label for="complemento">Complemento:</label><br>
+    <input type="text" id="complemento"><br><br>
+
+    <label for="bairro">Bairro:</label><br>
+    <input type="text" id="bairro"><br><br>
+
+    <label for="cidade">Cidade:</label><br>
+    <input type="text" id="cidade"><br><br>
+
+    <label for="estado">Estado:</label><br>
+    <input type="text" id="estado"><br><br>
+
+    <label for="cep">CEP:</label><br>
+    <input type="text" id="cep" placeholder="86000-000"><br><br>
+
+    <label for="setor">Setor de Atuação:</label><br>
+    <input type="text" id="setor" placeholder="Ex: Materiais Elétricos, Concreto..."><br><br>
+
+    <label for="obs">Observações:</label><br>
+    <textarea id="obs" rows="4" cols="50" placeholder="Informações adicionais, horários de entrega, etc."></textarea><br><br>
+
+    <button class="botao" id="cadastrarFornecedor">Cadastrar</button>
+
+    <br><br>
+    <footer>
+        <button class="botao" onclick="history.back()">Voltar</button>
+    </footer>
+
+    <script>
+        // Máscara CNPJ
+        document.getElementById("cnpj").addEventListener("input", function (e) {
+            let v = e.target.value.replace(/\D/g, "");
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2");
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            v = v.replace(/(\d{4})(\d)/, "$1-$2");
+            e.target.value = v;
+        });
+
+        // Cadastro
+        document.getElementById("cadastrarFornecedor").addEventListener("click", function () {
+            const fornecedor = {
+                empresa: document.getElementById("empresa").value.trim(),
+                razao: document.getElementById("razao").value.trim(),
+                cnpj: document.getElementById("cnpj").value.trim(),
+                contato: document.getElementById("contato").value.trim(),
+                telefone: document.getElementById("telefone").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                endereco: document.getElementById("endereco").value.trim(),
+                numero: document.getElementById("numero").value.trim(),
+                complemento: document.getElementById("complemento").value.trim(),
+                bairro: document.getElementById("bairro").value.trim(),
+                cidade: document.getElementById("cidade").value.trim(),
+                estado: document.getElementById("estado").value.trim(),
+                cep: document.getElementById("cep").value.trim(),
+                setor: document.getElementById("setor").value.trim(),
+                observacoes: document.getElementById("obs").value.trim()
+            };
+
+            if (!fornecedor.empresa || !fornecedor.cnpj || !fornecedor.contato) {
+                alert("Preencha pelo menos os campos obrigatórios: Empresa, CNPJ e Contato.");
+                return;
+            }
+
+            const fornecedores = JSON.parse(localStorage.getItem("fornecedores")) || [];
+            fornecedores.push(fornecedor);
+            localStorage.setItem("fornecedores", JSON.stringify(fornecedores));
+
+            alert("Fornecedor cadastrado com sucesso!");
+            document.querySelectorAll("input, textarea").forEach(el => el.value = "");
+        });
+    </script>
+</body>
+</html>
